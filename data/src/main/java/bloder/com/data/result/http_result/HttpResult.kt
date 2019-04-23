@@ -41,3 +41,8 @@ fun <T, R> HttpResult<T>.flatMap(transform: (T) -> HttpResult<R>) : HttpResult<R
     is Result.Failure -> HttpResult(Result(value))
     else -> transform(value as T)
 }
+
+fun <T> HttpResult<T>.composeError(function: (Exception) -> Unit) : HttpResult<T> = when(val value = this.get().get()) {
+    is Result.Failure -> this.also { value.handleExceptionWith(function) }
+    else -> this
+}

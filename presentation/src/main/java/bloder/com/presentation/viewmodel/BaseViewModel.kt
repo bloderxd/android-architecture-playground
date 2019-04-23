@@ -1,4 +1,4 @@
-package bloder.com.presentation
+package bloder.com.presentation.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import bloder.com.concurrency.coroutines

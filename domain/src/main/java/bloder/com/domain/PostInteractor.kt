@@ -7,7 +7,7 @@ import bloder.com.repository.Repository
 
 class PostInteractor(private val repository: Repository) {
 
-    suspend fun getPosts() : List<Post> = repository.postRepository().getPosts().flatMap {
+    suspend fun getPosts() : HttpResult<List<Post>> = repository.postRepository().getPosts().flatMap {
         HttpResult.success(it.map { it.toValue() })
-    }.getResponse()
+    }
 }

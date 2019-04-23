@@ -11,7 +11,7 @@ interface CoroutinesModule : CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-    suspend fun <T> getAsync(block: suspend () -> T) : AsyncOptionalContinuation<T>
+    suspend fun <T> getOnBackground(block: suspend () -> T) : AsyncOptionalContinuation<T>
 
     suspend infix fun <T> AsyncOptionalContinuation<T>.onThrow(block: suspend (Exception) -> T?) : T?
 }
